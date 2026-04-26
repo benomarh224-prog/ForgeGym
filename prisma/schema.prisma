@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  avatar    String?
+  weight    Float?
+  height    Float?
+  goal      String?  @default("lose_weight")
+  level     String?  @default("beginner")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  workouts  WorkoutSession[]
+  favorites Favorite[]
+  chatMessages ChatMessage[]
+}
+
+model Workout {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String   @default("gym")
+  difficulty  String   @default("intermediate")
+  muscleGroup String?
+  equipment   String?  @default("dumbbells")
+  duration    Int?
+  calories    Int?
+  image       String?
+  steps       String?   /// JSON array of step strings
+  tips        String?   /// JSON array of tip strings
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  favorites   Favorite[]
+}
+
+model WorkoutSession {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  workoutId String?
+  date      DateTime @default(now())
+  duration  Int?
+  calories  Int?
+  notes     String?
+  createdAt DateTime @default(now())
+}
+
+model Favorite {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  workoutId String
+  workout   Workout @relation(fields: [workoutId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, workoutId])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model Meal {
+  id          String  @id @default(cuid())
+  name        String
+  category    String  @default("breakfast")
+  calories    Int
+  protein     Float?
+  carbs       Float?
+  fat         Float?
+  description String?
+  ingredients String?   /// JSON array of ingredient strings
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
