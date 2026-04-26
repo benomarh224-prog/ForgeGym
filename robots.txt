@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://fitforge.21-0-10-152.sslip.io/sitemap.xml
