@@ -62,12 +62,8 @@ fitforge.21-0-10-152.sslip.io {
 # ============================================================
 # Custom Domain: fitforce.live (active when DNS is configured)
 # ============================================================
-fitforce.live, www.fitforce.live {
+fitforce.live {
 	encode gzip zstd
-
-	www.fitforce.live {
-		redir https://fitforce.live{uri} permanent
-	}
 
 	@transform_port_query {
 		query XTransformPort=*
@@ -85,7 +81,10 @@ fitforce.live, www.fitforce.live {
 			X-Frame-Options "SAMEORIGIN"
 			X-XSS-Protection "1; mode=block"
 			Referrer-Policy "strict-origin-when-cross-origin"
-			Strict-Transport-Security "max-age=31536000; includeSubDomains"
 		}
 	}
+}
+
+www.fitforce.live {
+	redir https://fitforce.live{uri} permanent
 }

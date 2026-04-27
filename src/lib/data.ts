@@ -44,12 +44,120 @@ export interface PricingPlan {
   popular?: boolean;
 }
 
+export interface MachineGuide {
+  id: string;
+  name: string;
+  category: string;
+  muscleGroup: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  image: string;
+  setup: string;
+  steps: string[];
+  commonMistakes: string[];
+  proTip: string;
+}
+
+export interface WorkoutProgram {
+  id: string;
+  name: string;
+  description: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  duration: string;
+  daysPerWeek: number;
+  goal: string;
+  image: string;
+  highlights: string[];
+  schedule: { day: string; focus: string; exercises: string[] }[];
+}
+
 export interface Feature {
   id: string;
   title: string;
   description: string;
   icon: string;
 }
+
+export interface FoodItem {
+  id: string;
+  name: string;
+  emoji: string;
+  category: 'protein' | 'carbs' | 'fruits' | 'vegetables' | 'dairy' | 'fats' | 'beverages' | 'snacks';
+  servingSize: string;
+  servingGrams: number;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  fiber?: number;
+}
+
+export const foodDatabase: FoodItem[] = [
+  // Proteins
+  { id: 'chicken-breast', name: 'Chicken Breast', emoji: '🍗', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 165, protein: 31, carbs: 0, fat: 3.6 },
+  { id: 'salmon', name: 'Salmon Fillet', emoji: '🐟', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 208, protein: 20, carbs: 0, fat: 13 },
+  { id: 'eggs', name: 'Whole Eggs', emoji: '🥚', category: 'protein', servingSize: '2 large', servingGrams: 100, calories: 155, protein: 13, carbs: 1.1, fat: 11 },
+  { id: 'egg-whites', name: 'Egg Whites', emoji: '🥚', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 52, protein: 11, carbs: 0.7, fat: 0.2 },
+  { id: 'lean-beef', name: 'Lean Ground Beef', emoji: '🥩', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 250, protein: 26, carbs: 0, fat: 17 },
+  { id: 'steak', name: 'Sirloin Steak', emoji: '🥩', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 206, protein: 26, carbs: 0, fat: 11 },
+  { id: 'turkey', name: 'Turkey Breast', emoji: '🦃', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 135, protein: 30, carbs: 0, fat: 1 },
+  { id: 'tuna', name: 'Canned Tuna', emoji: '🐟', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 116, protein: 26, carbs: 0, fat: 1 },
+  { id: 'shrimp', name: 'Shrimp', emoji: '🦐', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 85, protein: 20, carbs: 0.2, fat: 0.5 },
+  { id: 'tofu', name: 'Tofu (Firm)', emoji: '🧈', category: 'protein', servingSize: '100g', servingGrams: 100, calories: 144, protein: 17, carbs: 3.5, fat: 8 },
+  { id: 'whey-protein', name: 'Whey Protein', emoji: '🥤', category: 'protein', servingSize: '1 scoop (30g)', servingGrams: 30, calories: 120, protein: 24, carbs: 3, fat: 1 },
+  { id: 'greek-yogurt', name: 'Greek Yogurt', emoji: '🥛', category: 'dairy', servingSize: '170g', servingGrams: 170, calories: 100, protein: 17, carbs: 6, fat: 0.7 },
+
+  // Carbs / Grains
+  { id: 'white-rice', name: 'White Rice (cooked)', emoji: '🍚', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 130, protein: 2.7, carbs: 28, fat: 0.3 },
+  { id: 'brown-rice', name: 'Brown Rice (cooked)', emoji: '🍚', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 112, protein: 2.3, carbs: 24, fat: 0.8 },
+  { id: 'oats', name: 'Rolled Oats', emoji: '🥣', category: 'carbs', servingSize: '40g', servingGrams: 40, calories: 150, protein: 5, carbs: 27, fat: 2.5 },
+  { id: 'pasta', name: 'Pasta (cooked)', emoji: '🍝', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 131, protein: 5, carbs: 25, fat: 1.1 },
+  { id: 'sweet-potato', name: 'Sweet Potato', emoji: '🍠', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 86, protein: 1.6, carbs: 20, fat: 0.1 },
+  { id: 'quinoa', name: 'Quinoa (cooked)', emoji: '🌾', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 120, protein: 4.4, carbs: 21, fat: 1.9 },
+  { id: 'bread-whole', name: 'Whole Wheat Bread', emoji: '🍞', category: 'carbs', servingSize: '1 slice (30g)', servingGrams: 30, calories: 80, protein: 4, carbs: 14, fat: 1.1 },
+  { id: 'bagel', name: 'Plain Bagel', emoji: '🥯', category: 'carbs', servingSize: '1 medium', servingGrams: 105, calories: 245, protein: 9, carbs: 48, fat: 1.5 },
+  { id: 'couscous', name: 'Couscous (cooked)', emoji: '🌾', category: 'carbs', servingSize: '100g', servingGrams: 100, calories: 112, protein: 3.8, carbs: 23, fat: 0.2 },
+
+  // Fruits
+  { id: 'banana', name: 'Banana', emoji: '🍌', category: 'fruits', servingSize: '1 medium', servingGrams: 118, calories: 105, protein: 1.3, carbs: 27, fat: 0.4 },
+  { id: 'apple', name: 'Apple', emoji: '🍎', category: 'fruits', servingSize: '1 medium', servingGrams: 182, calories: 95, protein: 0.5, carbs: 25, fat: 0.3 },
+  { id: 'blueberries', name: 'Blueberries', emoji: '🫐', category: 'fruits', servingSize: '100g', servingGrams: 100, calories: 57, protein: 0.7, carbs: 14, fat: 0.3 },
+  { id: 'strawberries', name: 'Strawberries', emoji: '🍓', category: 'fruits', servingSize: '100g', servingGrams: 100, calories: 32, protein: 0.7, carbs: 7.7, fat: 0.3 },
+  { id: 'orange', name: 'Orange', emoji: '🍊', category: 'fruits', servingSize: '1 medium', servingGrams: 131, calories: 62, protein: 1.2, carbs: 15, fat: 0.2 },
+  { id: 'avocado', name: 'Avocado', emoji: '🥑', category: 'fats', servingSize: '100g', servingGrams: 100, calories: 160, protein: 2, carbs: 9, fat: 15 },
+  { id: 'grapes', name: 'Grapes', emoji: '🍇', category: 'fruits', servingSize: '100g', servingGrams: 100, calories: 67, protein: 0.6, carbs: 17, fat: 0.4 },
+
+  // Vegetables
+  { id: 'broccoli', name: 'Broccoli', emoji: '🥦', category: 'vegetables', servingSize: '100g', servingGrams: 100, calories: 34, protein: 2.8, carbs: 7, fat: 0.4 },
+  { id: 'spinach', name: 'Spinach', emoji: '🥬', category: 'vegetables', servingSize: '100g', servingGrams: 100, calories: 23, protein: 2.9, carbs: 3.6, fat: 0.4 },
+  { id: 'tomato', name: 'Tomato', emoji: '🍅', category: 'vegetables', servingSize: '1 medium', servingGrams: 123, calories: 22, protein: 1.1, carbs: 4.8, fat: 0.2 },
+  { id: 'mixed-salad', name: 'Mixed Salad', emoji: '🥗', category: 'vegetables', servingSize: '100g', servingGrams: 100, calories: 15, protein: 1.3, carbs: 2.5, fat: 0.2 },
+  { id: 'bell-pepper', name: 'Bell Pepper', emoji: '🫑', category: 'vegetables', servingSize: '1 medium', servingGrams: 119, calories: 31, protein: 1, carbs: 6, fat: 0.3 },
+
+  // Dairy
+  { id: 'whole-milk', name: 'Whole Milk', emoji: '🥛', category: 'dairy', servingSize: '250ml', servingGrams: 250, calories: 150, protein: 8, carbs: 12, fat: 8 },
+  { id: 'skim-milk', name: 'Skim Milk', emoji: '🥛', category: 'dairy', servingSize: '250ml', servingGrams: 250, calories: 83, protein: 8.3, carbs: 12, fat: 0.2 },
+  { id: 'cheddar', name: 'Cheddar Cheese', emoji: '🧀', category: 'dairy', servingSize: '30g', servingGrams: 30, calories: 120, protein: 7, carbs: 0.4, fat: 10 },
+  { id: 'cottage-cheese', name: 'Cottage Cheese', emoji: '🧀', category: 'dairy', servingSize: '100g', servingGrams: 100, calories: 98, protein: 11, carbs: 3.4, fat: 4.3 },
+  { id: 'butter', name: 'Butter', emoji: '🧈', category: 'fats', servingSize: '1 tbsp (14g)', servingGrams: 14, calories: 100, protein: 0.1, carbs: 0, fat: 11 },
+
+  // Fats & Nuts
+  { id: 'almonds', name: 'Almonds', emoji: '🥜', category: 'fats', servingSize: '30g', servingGrams: 30, calories: 170, protein: 6, carbs: 6, fat: 15 },
+  { id: 'peanut-butter', name: 'Peanut Butter', emoji: '🥜', category: 'fats', servingSize: '2 tbsp (32g)', servingGrams: 32, calories: 190, protein: 7, carbs: 6, fat: 16 },
+  { id: 'walnuts', name: 'Walnuts', emoji: '🌰', category: 'fats', servingSize: '30g', servingGrams: 30, calories: 200, protein: 5, carbs: 4, fat: 20 },
+  { id: 'olive-oil', name: 'Olive Oil', emoji: '🫒', category: 'fats', servingSize: '1 tbsp (14ml)', servingGrams: 14, calories: 120, protein: 0, carbs: 0, fat: 14 },
+
+  // Beverages
+  { id: 'orange-juice', name: 'Orange Juice', emoji: '🧃', category: 'beverages', servingSize: '250ml', servingGrams: 250, calories: 112, protein: 1.7, carbs: 26, fat: 0.5 },
+  { id: 'protein-shake', name: 'Protein Shake', emoji: '🥤', category: 'beverages', servingSize: '350ml', servingGrams: 350, calories: 220, protein: 35, carbs: 15, fat: 3 },
+  { id: 'coffee-latte', name: 'Latte', emoji: '☕', category: 'beverages', servingSize: '350ml', servingGrams: 350, calories: 190, protein: 10, carbs: 18, fat: 7 },
+
+  // Snacks & Treats
+  { id: 'dark-chocolate', name: 'Dark Chocolate (70%)', emoji: '🍫', category: 'snacks', servingSize: '30g', servingGrams: 30, calories: 170, protein: 2.2, carbs: 13, fat: 12 },
+  { id: 'protein-bar', name: 'Protein Bar', emoji: '🍫', category: 'snacks', servingSize: '1 bar (60g)', servingGrams: 60, calories: 220, protein: 20, carbs: 22, fat: 8 },
+  { id: 'popcorn', name: 'Air-Popped Popcorn', emoji: '🍿', category: 'snacks', servingSize: '30g', servingGrams: 30, calories: 115, protein: 3.5, carbs: 22, fat: 1.5 },
+  { id: 'granola', name: 'Granola', emoji: '🥣', category: 'snacks', servingSize: '40g', servingGrams: 40, calories: 180, protein: 4, carbs: 29, fat: 6 },
+  { id: 'honey', name: 'Honey', emoji: '🍯', category: 'snacks', servingSize: '1 tbsp (21g)', servingGrams: 21, calories: 64, protein: 0.1, carbs: 17, fat: 0 },
+];
 
 export const exercises: Exercise[] = [
   {
@@ -615,4 +723,258 @@ export const dailyCalorieData = [
   { day: 'Fri', consumed: 2100, burned: 430, protein: 140, carbs: 215, fat: 60 },
   { day: 'Sat', consumed: 2400, burned: 350, protein: 130, carbs: 260, fat: 75 },
   { day: 'Sun', consumed: 1900, burned: 0, protein: 110, carbs: 200, fat: 55 },
+];
+
+export const machineGuides: MachineGuide[] = [
+  {
+    id: 'treadmill',
+    name: 'Treadmill',
+    category: 'Cardio',
+    muscleGroup: 'Legs, Core, Cardiovascular',
+    difficulty: 'beginner',
+    image: '/images/gym-machines.png',
+    setup: 'Stand on the side rails, clip the safety key to your clothing. Select a program or manual mode. Start at a slow walk to warm up.',
+    steps: [
+      'Step onto the belt and start walking at 3-4 mph',
+      'Gradually increase speed to your desired pace (5-6 mph for jogging, 6+ mph for running)',
+      'Maintain an upright posture with a slight forward lean from the ankles',
+      'Swing your arms naturally — don\'t grip the handrails tightly',
+      'Land softly on the midfoot, rolling through to push off your toes',
+      'Cool down by walking at 3 mph for the last 3-5 minutes'
+    ],
+    commonMistakes: [
+      'Holding onto the handrails while running (reduces calorie burn by 20-30%)',
+      'Starting at too high a speed without warming up',
+      'Looking down at the screen — keep your head up and look forward',
+      'Running too close to the front of the belt'
+    ],
+    proTip: 'Use incline intervals (1 min at 5% incline, 1 min flat) to boost calorie burn by up to 40% without increasing speed.'
+  },
+  {
+    id: 'leg-press',
+    name: 'Leg Press Machine',
+    category: 'Strength',
+    muscleGroup: 'Quads, Glutes, Hamstrings',
+    difficulty: 'beginner',
+    image: '/images/exercise-squat.png',
+    setup: 'Sit in the seat with your back flat against the pad. Place feet shoulder-width apart on the platform, positioned at the middle of the foot plate.',
+    steps: [
+      'Unlock the safety latches by pressing the handles to the side',
+      'Slowly lower the weight by bending your knees toward your chest',
+      'Lower until your knees reach approximately 90 degrees — don\'t go deeper',
+      'Push through your heels to press the weight back to the starting position',
+      'Exhale on the push, inhale on the lowering phase',
+      'Re-engage the safety latches when finished'
+    ],
+    commonMistakes: [
+      'Locking out knees completely at the top — keep a slight bend',
+      'Placing feet too high on the platform (too much glute, not enough quad)',
+      'Letting knees cave inward during the press',
+      'Lowering the weight too fast — control the eccentric phase'
+    ],
+    proTip: 'Vary your foot placement: higher = more glutes/hamstrings, lower = more quads, wider = more inner thigh.'
+  },
+  {
+    id: 'cable-machine',
+    name: 'Cable Crossover Machine',
+    category: 'Strength',
+    muscleGroup: 'Chest, Shoulders, Arms',
+    difficulty: 'intermediate',
+    image: '/images/workout-strength.png',
+    setup: 'Set both pulleys to the highest position. Attach single-grip D-handles. Select your weight on both weight stacks.',
+    steps: [
+      'Stand in a staggered stance between the two pulleys, one foot forward',
+      'Grab both handles with palms facing down or slightly inward',
+      'Take a small step forward to create tension in the cables',
+      'With a slight bend in your elbows, bring both hands together in an arc',
+      'Squeeze your chest hard at the center crossing point',
+      'Slowly open your arms back to the starting position with control'
+    ],
+    commonMistakes: [
+      'Using too much weight — this leads to swinging and poor form',
+      'Bending the elbows too much (turns it into a tricep exercise)',
+      'Standing too close or too far from the machine',
+      'Not controlling the return phase — the stretch is where muscle growth happens'
+    ],
+    proTip: 'Try high-to-low (cable flyes) for lower chest, or low-to-high for upper chest. Each angle targets different muscle fibers.'
+  },
+  {
+    id: 'lat-pulldown',
+    name: 'Lat Pulldown Machine',
+    category: 'Strength',
+    muscleGroup: 'Lats, Biceps, Upper Back',
+    difficulty: 'beginner',
+    image: '/images/workout-strength.png',
+    setup: 'Adjust the thigh pad so it locks your legs in place. Stand up and grab the wide bar, then sit back down. Your arms should be fully extended overhead.',
+    steps: [
+      'Grip the bar wider than shoulder-width, palms facing away',
+      'Lean back slightly (about 15 degrees) and stick your chest out',
+      'Pull the bar down toward your upper chest by driving your elbows down and back',
+      'Squeeze your shoulder blades together at the bottom',
+      'Slowly release the bar back up with control — don\'t let it snap back',
+      'Keep your core engaged throughout the movement'
+    ],
+    commonMistakes: [
+      'Pulling the bar behind your neck — unsafe for shoulders, always pull to chest',
+      'Leaning too far back (turns it into a row, not a pulldown)',
+      'Using body momentum to swing the weight down',
+      'Gripping too narrow (targets biceps more than lats)'
+    ],
+    proTip: 'Focus on driving your elbows to your hips rather than thinking about pulling the bar. This mental cue activates more lat muscle fibers.'
+  },
+  {
+    id: 'chest-press-machine',
+    name: 'Chest Press Machine',
+    category: 'Strength',
+    muscleGroup: 'Chest, Shoulders, Triceps',
+    difficulty: 'beginner',
+    image: '/images/workout-strength.png',
+    setup: 'Adjust the seat height so the handles are at mid-chest level. Sit with your back flat, feet firmly on the floor. Select your weight.',
+    steps: [
+      'Grip the handles with palms facing forward or slightly inward',
+      'Unrack the weight by pressing the handles forward slightly',
+      'Press the handles forward until your arms are nearly extended (don\'t lock out)',
+      'Squeeze your chest muscles at the full extension point',
+      'Slowly bring the handles back toward your chest in a controlled motion',
+      'Pause briefly at the chest, then press again'
+    ],
+    commonMistakes: [
+      'Setting the seat too low or too high (causes shoulder impingement)',
+      'Locking out elbows forcefully at the top',
+      'Rounding shoulders forward instead of keeping chest up',
+      'Using too much weight and arching the back to compensate'
+    ],
+    proTip: 'Pause for 1-2 seconds at the bottom of each rep (when handles are closest to chest). This eliminates momentum and builds more strength.'
+  },
+  {
+    id: 'smith-machine',
+    name: 'Smith Machine',
+    category: 'Strength',
+    muscleGroup: 'Full Body (Versatile)',
+    difficulty: 'intermediate',
+    image: '/images/gym-machines.png',
+    setup: 'The Smith Machine has a fixed barbell path. Set the safety stops at the appropriate height. Add weight plates and secure collars. Unlock the bar by rotating it.',
+    steps: [
+      'Position yourself under the bar for your chosen exercise (squat, bench press, row)',
+      'For squats: place bar on upper back, feet slightly forward of center',
+      'Unrack the bar by rotating the hooks outward',
+      'Perform your exercise along the fixed vertical path',
+      'Re-rack by rotating the bar back at any point — the safety stops catch it',
+      'Always use the safety catches as a backup'
+    ],
+    commonMistakes: [
+      'Relying entirely on the machine and never learning free weight form',
+      'Standing too far forward (for squats) which puts excessive strain on the lower back',
+      'Not using safety stops — essential for solo training',
+      'Loading uneven weight on one side'
+    ],
+    proTip: 'The Smith Machine is excellent for beginners learning movement patterns and for advanced lifters doing isolation work. Use it as a tool, not a crutch.'
+  }
+];
+
+export const workoutPrograms: WorkoutProgram[] = [
+  {
+    id: 'beginner-fullbody',
+    name: 'Full Body Foundation',
+    description: 'The perfect starting point for beginners. This program builds a solid foundation of strength and muscle across your entire body with simple, effective compound movements 3 days per week.',
+    level: 'beginner',
+    duration: '8 weeks',
+    daysPerWeek: 3,
+    goal: 'Build Strength & Learn Proper Form',
+    image: '/images/prog-fullbody.png',
+    highlights: ['3 days per week', '45 min sessions', 'Full body each session', 'Progressive overload', 'Rest day between workouts'],
+    schedule: [
+      { day: 'Monday', focus: 'Full Body A', exercises: ['Goblet Squat 3×10', 'Push-Ups 3×8-12', 'Dumbbell Row 3×10', 'Plank 3×30s', 'Lat Pulldown 3×10'] },
+      { day: 'Wednesday', focus: 'Full Body B', exercises: ['Leg Press 3×12', 'Dumbbell Shoulder Press 3×10', 'Dumbbell Bench Press 3×10', 'Cable Crunch 3×15', 'Face Pulls 3×15'] },
+      { day: 'Friday', focus: 'Full Body C', exercises: ['Bodyweight Squat 3×15', 'Incline Dumbbell Press 3×10', 'Seated Cable Row 3×12', 'Romanian Deadlift 3×10', 'Bicep Curl 2×12'] },
+    ]
+  },
+  {
+    id: 'ppl-split',
+    name: 'Push / Pull / Legs',
+    description: 'The most popular intermediate program. Each session targets specific movement patterns for maximum muscle stimulation and recovery. Ideal for building serious muscle mass.',
+    level: 'intermediate',
+    duration: '12 weeks',
+    daysPerWeek: 6,
+    goal: 'Build Muscle & Size',
+    image: '/images/prog-ppl.png',
+    highlights: ['6 days per week', '60 min sessions', 'Push/Pull/Legs split', 'Optimal recovery', 'Progressive overload'],
+    schedule: [
+      { day: 'Monday', focus: 'Push', exercises: ['Bench Press 4×8', 'OHP 3×10', 'Incline DB Press 3×12', 'Lateral Raises 3×15', 'Tricep Pushdown 3×12'] },
+      { day: 'Tuesday', focus: 'Pull', exercises: ['Deadlift 4×6', 'Pull-Ups 4×8', 'Barbell Row 3×10', 'Face Pulls 3×15', 'Barbell Curl 3×12'] },
+      { day: 'Wednesday', focus: 'Legs', exercises: ['Barbell Squat 4×8', 'Leg Press 3×12', 'Romanian Deadlift 3×10', 'Leg Curl 3×12', 'Calf Raises 4×15'] },
+      { day: 'Thursday', focus: 'Push', exercises: ['OHP 4×8', 'DB Bench Press 3×10', 'Cable Flyes 3×15', 'Tricep Dips 3×12', 'Shrugs 3×15'] },
+      { day: 'Friday', focus: 'Pull', exercises: ['Barbell Row 4×8', 'Lat Pulldown 3×10', 'Seated Cable Row 3×12', 'Hammer Curls 3×12', 'Hanging Leg Raise 3×15'] },
+      { day: 'Saturday', focus: 'Legs', exercises: ['Front Squat 4×8', 'Bulgarian Split Squat 3×10', 'Leg Extension 3×15', 'Hip Thrust 3×12', 'Plank 3×45s'] },
+    ]
+  },
+  {
+    id: 'hiit-fat-loss',
+    name: 'HIIT Fat Burn',
+    description: 'An intense high-intensity interval training program designed to maximize calorie burn and fat loss. Combines cardio bursts with strength circuits for the ultimate conditioning challenge.',
+    level: 'intermediate',
+    duration: '6 weeks',
+    daysPerWeek: 4,
+    goal: 'Burn Fat & Improve Conditioning',
+    image: '/images/prog-hiit.png',
+    highlights: ['4 days per week', '30 min sessions', 'HIIT intervals', 'No equipment needed', 'Max calorie burn'],
+    schedule: [
+      { day: 'Monday', focus: 'HIIT Cardio', exercises: ['Warm-Up 3 min', 'Burpees 30s/Rest 15s ×4', 'Mountain Climbers 30s/Rest 15s ×4', 'Jump Squats 30s/Rest 15s ×4', 'Cool-Down 3 min'] },
+      { day: 'Tuesday', focus: 'Upper Body Circuit', exercises: ['Push-Ups ×15', 'Pike Push-Ups ×10', 'Tricep Dips ×12', 'Plank Shoulder Taps ×20', 'Rest 60s — Repeat 4 rounds'] },
+      { day: 'Thursday', focus: 'Lower Body Circuit', exercises: ['Jump Squats ×15', 'Walking Lunges ×12/leg', 'Glute Bridges ×20', 'Calf Raises ×25', 'Rest 60s — Repeat 4 rounds'] },
+      { day: 'Saturday', focus: 'Full Body HIIT', exercises: ['Burpee to Push-Up ×10', 'Tuck Jumps ×12', 'V-Up Crunches ×15', 'Plank Jacks ×20', 'Rest 60s — Repeat 5 rounds'] },
+    ]
+  },
+  {
+    id: 'strength-builder',
+    name: 'Strength Builder',
+    description: 'A classic strength-focused program built around the big compound lifts. Designed to increase your 1RM on squat, bench press, deadlift, and overhead press through progressive overload.',
+    level: 'advanced',
+    duration: '16 weeks',
+    daysPerWeek: 4,
+    goal: 'Increase Raw Strength',
+    image: '/images/prog-strength.png',
+    highlights: ['4 days per week', '75 min sessions', 'Heavy compound lifts', '1RM progression', 'Deload every 4th week'],
+    schedule: [
+      { day: 'Monday', focus: 'Upper Strength', exercises: ['Bench Press 5×5', 'Barbell Row 5×5', 'OHP 3×8', 'Weighted Pull-Ups 3×8', 'Barbell Curl 3×10'] },
+      { day: 'Tuesday', focus: 'Lower Strength', exercises: ['Barbell Back Squat 5×5', 'Romanian Deadlift 3×8', 'Leg Press 3×12', 'Weighted Calf Raises 4×10', 'Ab Wheel 3×12'] },
+      { day: 'Thursday', focus: 'Upper Hypertrophy', exercises: ['Incline Bench 4×8', 'Weighted Dips 4×8', 'Cable Row 3×12', 'Lateral Raises 4×15', 'Hammer Curls 3×12'] },
+      { day: 'Friday', focus: 'Lower Hypertrophy', exercises: ['Front Squat 4×8', 'Leg Curl 4×12', 'Hip Thrust 4×10', 'Walking Lunges 3×12/leg', 'Hanging Leg Raise 3×15'] },
+    ]
+  },
+  {
+    id: 'upper-lower-split',
+    name: 'Upper / Lower Split',
+    description: 'A balanced 4-day program alternating between upper body and lower body sessions. Great for intermediate lifters wanting to add muscle and strength with adequate recovery.',
+    level: 'intermediate',
+    duration: '10 weeks',
+    daysPerWeek: 4,
+    goal: 'Balanced Muscle & Strength',
+    image: '/images/prog-upperlower.png',
+    highlights: ['4 days per week', '55 min sessions', 'Upper/Lower split', '2 rest days', 'Balanced volume'],
+    schedule: [
+      { day: 'Monday', focus: 'Upper Body A', exercises: ['Bench Press 4×8', 'Barbell Row 4×8', 'OHP 3×10', 'Lat Pulldown 3×10', 'Face Pulls 3×15'] },
+      { day: 'Tuesday', focus: 'Lower Body A', exercises: ['Back Squat 4×8', 'Romanian Deadlift 3×10', 'Leg Press 3×12', 'Leg Curl 3×12', 'Calf Raises 4×15'] },
+      { day: 'Thursday', focus: 'Upper Body B', exercises: ['Incline DB Press 4×10', 'Pull-Ups 4×8', 'Cable Flyes 3×12', 'Seated Cable Row 3×12', 'DB Curl 3×12'] },
+      { day: 'Friday', focus: 'Lower Body B', exercises: ['Front Squat 3×10', 'Hip Thrust 4×10', 'Bulgarian Split Squat 3×10', 'Leg Extension 3×15', 'Plank 3×45s'] },
+    ]
+  },
+  {
+    id: 'muscle-hypertrophy',
+    name: 'Muscle Hypertrophy',
+    description: 'An advanced bodybuilding program designed for maximum muscle growth. Uses higher volume, moderate weight, and shorter rest periods to create the optimal stimulus for muscle hypertrophy.',
+    level: 'advanced',
+    duration: '12 weeks',
+    daysPerWeek: 5,
+    goal: 'Maximum Muscle Growth',
+    image: '/images/prog-hypertrophy.png',
+    highlights: ['5 days per week', '70 min sessions', 'High volume', 'Short rest (60-90s)', 'Mind-muscle connection'],
+    schedule: [
+      { day: 'Monday', focus: 'Chest & Triceps', exercises: ['Bench Press 4×10', 'Incline DB Press 4×10', 'Cable Flyes 3×15', 'Dips 3×12', 'Overhead Extension 3×15'] },
+      { day: 'Tuesday', focus: 'Back & Biceps', exercises: ['Deadlift 4×8', 'Pull-Ups 4×10', 'Barbell Row 4×10', 'Cable Curl 3×12', 'Hammer Curl 3×12'] },
+      { day: 'Wednesday', focus: 'Shoulders & Abs', exercises: ['OHP 4×10', 'Lateral Raises 4×15', 'Face Pulls 3×15', 'Hanging Leg Raise 4×15', 'Cable Crunch 3×20'] },
+      { day: 'Thursday', focus: 'Legs', exercises: ['Squat 4×10', 'Leg Press 4×12', 'Leg Curl 4×12', 'Leg Extension 3×15', 'Calf Raises 5×15'] },
+      { day: 'Friday', focus: 'Full Body Pump', exercises: ['DB Bench 3×12', 'Cable Row 3×12', 'Lunges 3×12/leg', 'Lateral Raise 3×15', 'Plank 3×60s'] },
+    ]
+  }
 ];
